@@ -6,6 +6,7 @@ tell application "System Events"
 	set quotedVpnName to quoted form of vpnName
 	
 	try
+	
 		try
 			set vpnStatus to first word of (do shell script "scutil --nc status " & quotedVpnName)
 		on error "No Service"
@@ -23,11 +24,10 @@ tell application "System Events"
 		end try
 		
 		if vpnStatus is equal to "Connected" then
+			
 			do shell script "scutil --nc stop " & quotedVpnName
-			return
-		end if
-		
-		if vpnStatus is equal to "Disconnected" then
+			
+		else if vpnStatus is equal to "Disconnected" then
 			
 			try
 				
@@ -67,6 +67,7 @@ tell application "System Events"
 				set value of text field 2 to vpnPassword
 				click button "OK"
 			end tell
+			
 		end if
 		
 	on error errMsg number errNum
