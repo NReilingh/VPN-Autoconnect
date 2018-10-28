@@ -52,7 +52,7 @@ tell application "System Events"
 				
 			end try
 			
-			do shell script "scutil --nc start " & vpnName
+			do shell script "scutil --nc start " & quotedVpnName
 			
 			set attempt to 1
 			repeat until window 1 of application process "UserNotificationCenter" exists
